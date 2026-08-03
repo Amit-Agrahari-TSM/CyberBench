@@ -1,3 +1,6 @@
+# Ignore Local Hard Benchmark Task Suite
+task-2/
+
 # Ignore Harbor Job Runs & Results
 jobs/
 *.log
