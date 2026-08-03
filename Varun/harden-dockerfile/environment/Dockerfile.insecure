@@ -1,0 +1,19 @@
+# Insecure Dockerfile for CyberBench Container Security Task
+
+FROM ubuntu:latest
+
+# Hardcoded secret credentials
+ENV API_SECRET="super-secret-key-12345"
+ENV DB_PASSWORD="admin_password_9876"
+
+WORKDIR /app
+
+# Run package installation without cleanup
+RUN apt-get update && apt-get install -y python3 python3-pip curl
+
+COPY . /app
+
+EXPOSE 22 80 8080 3306
+
+# Container runs as root (no non-root USER instruction created)
+CMD ["python3", "app.py"]

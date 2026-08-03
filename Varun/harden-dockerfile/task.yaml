@@ -1,0 +1,9 @@
+name: harden-dockerfile
+category: docker-security
+difficulty: medium
+description: Audit Dockerfile.insecure for container security anti-patterns and output report.json.
+files:
+  - files/Dockerfile.insecure
+output:
+  - report.json
+  - Dockerfile.hardened

@@ -1,0 +1,10 @@
+[dataset]
+name = "cyberbench/varun"
+description = "CyberBench Benchmark Tasks for Varun"
+authors = [{ name = "CyberBench" }]
+keywords = ["security", "benchmark"]
+
+tasks = [
+    "harden-dockerfile",
+    "fix-sqli-flask"
+]

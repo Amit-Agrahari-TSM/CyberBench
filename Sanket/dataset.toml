@@ -1,0 +1,10 @@
+[dataset]
+name = "cyberbench/sanket"
+description = "CyberBench Benchmark Tasks for Sanket"
+authors = [{ name = "CyberBench" }]
+keywords = ["security", "benchmark"]
+
+tasks = [
+    "analyze-apache-access-log",
+    "remediate-jwt-auth-bypass"
+]
