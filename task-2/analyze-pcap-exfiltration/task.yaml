@@ -1,8 +1,0 @@
-name: analyze-pcap-exfiltration
-category: network-analysis
-difficulty: hard
-description: Dissect packet capture traffic.pcap to isolate covert DNS exfiltration, reconstruct base64 payload, and detect attacker C2 IP.
-files:
-  - files/traffic.pcap
-output:
-  - report.json
