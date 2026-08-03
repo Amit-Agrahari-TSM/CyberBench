@@ -1,8 +1,0 @@
-name: analyze-apache-access-log
-category: log-analysis
-difficulty: hard
-description: Analyze access.log web server log entries and compute request metrics.
-files:
-  - files/access.log
-output:
-  - report.json

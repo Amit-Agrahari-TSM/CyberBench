@@ -1,9 +1,0 @@
-name: fix-sqli-flask
-category: web-security
-difficulty: medium
-description: Remediate SQL injection in app.py using parameterized queries and save app_fixed.py and report.json.
-files:
-  - files/app.py
-output:
-  - app_fixed.py
-  - report.json

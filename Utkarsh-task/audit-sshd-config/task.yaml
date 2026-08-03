@@ -1,8 +1,0 @@
-name: audit-sshd-config
-category: system-security
-difficulty: easy
-description: Audit an SSH daemon configuration file (sshd_config) to detect critical security misconfigurations.
-files:
-  - files/sshd_config
-output:
-  - report.json

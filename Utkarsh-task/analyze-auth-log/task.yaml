@@ -1,8 +1,0 @@
-name: analyze-auth-log
-category: log-analysis
-difficulty: easy
-description: Analyze a Linux authentication log to count failed/successful logins, identify top attacking IP, and check for root logins.
-files:
-  - files/auth.log
-output:
-  - report.json
