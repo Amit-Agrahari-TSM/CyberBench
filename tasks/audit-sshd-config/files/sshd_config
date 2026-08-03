@@ -1,0 +1,21 @@
+# SSH Daemon Configuration File for CyberBench Audit Task
+
+Port 22
+Protocol 1,2
+ListenAddress 0.0.0.0
+
+# Security Sensitive Settings
+PermitRootLogin yes
+PermitEmptyPasswords yes
+PasswordAuthentication yes
+X11Forwarding yes
+MaxAuthTries 10
+ClientAliveInterval 0
+ClientAliveCountMax 3
+
+# Host-based and rhosts authentication
+HostbasedAuthentication yes
+IgnoreRhosts no
+
+# Subsystem definition
+Subsystem sftp /usr/lib/openssh/sftp-server

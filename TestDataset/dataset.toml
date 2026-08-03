@@ -1,0 +1,11 @@
+# Dataset manifest for sercive/Satck
+# Add tasks using: harbor add <org>/<name>
+# Publish using: harbor publish
+
+[dataset]
+name = "sercive/Satck"
+description = ""
+authors = []
+keywords = []
+
+tasks = []

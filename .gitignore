@@ -1,0 +1,18 @@
+# Ignore Harbor Job Runs & Results
+jobs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Environment / Keys
+.env
