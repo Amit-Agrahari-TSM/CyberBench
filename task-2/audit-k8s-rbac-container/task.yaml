@@ -1,0 +1,8 @@
+name: audit-k8s-rbac-container
+category: cloud-security
+difficulty: hard
+description: Audit k8s_deployment.yaml for ClusterRole wildcard RBAC, docker socket hostPath mount, privileged mode, and automount token vulnerabilities.
+files:
+  - files/k8s_deployment.yaml
+output:
+  - report.json

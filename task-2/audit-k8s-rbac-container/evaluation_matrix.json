@@ -1,0 +1,38 @@
+{
+  "task": "audit-k8s-rbac-container",
+  "category": "cloud-security",
+  "total_score": 1.0,
+  "max_score": 1.0,
+  "metrics": {
+    "wildcard_rbac": {
+      "weight": 0.25,
+      "score": 1.0,
+      "expected": true,
+      "actual": true
+    },
+    "docker_socket_mounted": {
+      "weight": 0.25,
+      "score": 1.0,
+      "expected": true,
+      "actual": true
+    },
+    "privileged_container_mode": {
+      "weight": 0.2,
+      "score": 1.0,
+      "expected": true,
+      "actual": true
+    },
+    "service_account_token_automounted": {
+      "weight": 0.15,
+      "score": 1.0,
+      "expected": true,
+      "actual": true
+    },
+    "critical_vulnerability_count": {
+      "weight": 0.15,
+      "score": 1.0,
+      "expected": ">= 4",
+      "actual": 4
+    }
+  }
+}

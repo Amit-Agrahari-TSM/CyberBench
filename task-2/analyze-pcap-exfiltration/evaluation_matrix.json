@@ -1,0 +1,38 @@
+{
+  "task": "analyze-pcap-exfiltration",
+  "category": "network-analysis",
+  "total_score": 1.0,
+  "max_score": 1.0,
+  "metrics": {
+    "attacker_c2_ip": {
+      "weight": 0.25,
+      "score": 1.0,
+      "expected": "10.0.0.99",
+      "actual": "10.0.0.99"
+    },
+    "victim_ip": {
+      "weight": 0.15,
+      "score": 1.0,
+      "expected": "192.168.1.105",
+      "actual": "192.168.1.105"
+    },
+    "exfiltration_protocol": {
+      "weight": 0.15,
+      "score": 1.0,
+      "expected": "DNS",
+      "actual": "DNS"
+    },
+    "exfiltrated_secret": {
+      "weight": 0.35,
+      "score": 1.0,
+      "expected": "FLAG{k8s_secret_auth_token_9981}",
+      "actual": "FLAG{k8s_secret_auth_token_9981}"
+    },
+    "chunk_count": {
+      "weight": 0.1,
+      "score": 1.0,
+      "expected": 4,
+      "actual": 4
+    }
+  }
+}
