@@ -1,0 +1,9 @@
+name: remediate-jwt-auth-bypass
+category: secure-coding
+difficulty: hard
+description: Refactor jwt_utils.py to reject 'none' algorithm tokens, enforce HS256 HMAC verification, and validate exp claims.
+files:
+  - files/jwt_utils.py
+output:
+  - report.json
+  - jwt_utils.py

@@ -1,6 +1,6 @@
 # CyberBench: Modular Cybersecurity Evaluation Benchmark for AI Agents
 
-**CyberBench** is a modular, reproducible evaluation benchmark suite designed to evaluate AI agents—including **Claude Code (`claude`)** with **MiniMax-M3**—on real-world cybersecurity, SOC log analysis, system hardening, container security, and secure coding tasks.
+**CyberBench** is a modular, reproducible evaluation benchmark suite designed to evaluate AI agents—including **Claude Code (`claude`)** with **MiniMax-M3**—on real-world cybersecurity, SOC log telemetry analysis, web server access log analysis, container security, cloud baseline auditing, and secure coding / vulnerability remediation tasks.
 
 It integrates natively with the **Harbor Framework** (`harbor run -p tasks -a claude-code`).
 
@@ -10,14 +10,16 @@ It integrates natively with the **Harbor Framework** (`harbor run -p tasks -a cl
 
 ```
 CyberBench/
-├── dataset.toml                  # Harbor dataset manifest definition
+├── dataset.toml                  # Root Harbor dataset manifest definition
 ├── datasets/
 │   └── cyber-bench.toml          # Modular dataset configuration file
-├── tasks/                        # Benchmark Tasks
+├── tasks/                        # Benchmark Tasks (6 Tasks)
 │   ├── analyze-auth-log/         # Task 1: Linux authentication log analysis (SOC)
 │   ├── audit-sshd-config/        # Task 2: SSH daemon hardening & audit
 │   ├── harden-dockerfile/        # Task 3: Container security & Dockerfile hardening
-│   └── fix-sqli-flask/           # Task 4: Secure coding & SQL injection remediation
+│   ├── fix-sqli-flask/           # Task 4: Secure coding & SQL injection remediation
+│   ├── analyze-apache-access-log/# Task 5 (Hard): Real 1500-line Elastic Apache Web Access log analysis
+│   └── remediate-jwt-auth-bypass/# Task 6 (Hard): Python JWT auth bypass & algorithm confusion remediation
 │
 ├── scripts/
 │   ├── claude_adapter.py         # Claude Code CLI adapter interface
@@ -31,12 +33,14 @@ CyberBench/
 
 ## 🎯 Task Benchmark Suite Overview
 
-| Task ID | Category | Difficulty | Description | Target Output |
-| :--- | :--- | :--- | :--- | :--- |
-| `analyze-auth-log` | Log Analysis | Easy | Analyze real Linux authentication log (`auth.log`) to compute failed logins, successful logins, top attacking IP, and root logins. | `report.json` |
-| `audit-sshd-config` | System Security | Easy/Medium | Audit insecure SSH daemon config (`sshd_config`) to detect root login, empty passwords, X11 forwarding, and weak protocols. | `report.json` |
-| `harden-dockerfile` | Container Security | Medium | Audit insecure `Dockerfile` for root user execution, hardcoded secrets, unpinned tags, and missing healthchecks. | `report.json` |
-| `fix-sqli-flask` | Secure Coding | Medium | Identify and remediate SQL injection vulnerability in a Flask web application using parameterized SQL queries (`?`). | `app_fixed.py` + `report.json` |
+| Task ID | Category | Difficulty | Dataset Type | Description | Target Output |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `analyze-auth-log` | Log Analysis | Easy | Real Loghub | Analyze authentic Linux auth.log (500 entries) to compute failed logins, successful logins, top attacking IP, and root logins. | `report.json` |
+| `audit-sshd-config` | System Security | Easy/Medium | OpenSSH Config | Audit insecure sshd_config file to detect PermitRootLogin, PermitEmptyPasswords, X11Forwarding, and SSH Protocol 1. | `report.json` |
+| `harden-dockerfile` | Container Security | Medium | Dockerfile | Audit insecure Dockerfile for root user execution, hardcoded API secret key in ENV, unpinned :latest tag, and missing HEALTHCHECK. | `report.json` |
+| `fix-sqli-flask` | Secure Coding | Medium | Flask / SQLite | Identify SQL injection in Flask app.py and refactor database queries to use safe parameterized SQL placeholders (?). | `app_fixed.py` + `report.json` |
+| **`analyze-apache-access-log`** | Log Analysis | **Hard** | **Real Elastic Apache Log (1500 lines)** | Dissect real web server access log (`access.log`) to compute total requests, top client IP, HTTP 200/404/301 status counts, and GET request metrics using **dummy schema prompts**. | `report.json` |
+| **`remediate-jwt-auth-bypass`** | Secure Coding | **Hard** | **Multi-File Python App** | Audit `jwt_utils.py` to identify `alg: "none"` algorithm confusion, unverified signatures, and ignored `exp` claims. Refactor code to enforce HMAC-SHA256 and expiration checks using **dummy schema prompts**. | `jwt_utils.py` + `report.json` |
 
 ---
 
@@ -44,12 +48,7 @@ CyberBench/
 
 From the `CyberBench` root directory, execute:
 
-### 1. Standard Harbor Execution
-```powershell
-harbor run -p tasks -a claude-code
-```
-
-### 2. Specifying MiniMax Model & API Credentials
+### Run All 6 Tasks:
 ```powershell
 harbor run -p tasks -a claude-code `
   -m "MiniMax-M3[1m]" `

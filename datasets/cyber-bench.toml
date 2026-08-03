@@ -1,14 +1,14 @@
-# Dataset manifest for cyberbench/cyber-bench
-
 [dataset]
-name = "cyberbench/cyber-bench"
-description = "CyberBench: Cybersecurity evaluation benchmark for AI coding agents."
-authors = ["CyberBench"]
-keywords = ["security", "benchmark", "log-analysis", "system-security", "docker-security", "web-security"]
+name = "cyberbench"
+description = "CyberBench Cybersecurity Evaluation Suite for AI Coding Agents."
+authors = [{ name = "CyberBench" }]
+keywords = ["security", "benchmark"]
 
 tasks = [
     "tasks/analyze-auth-log",
     "tasks/audit-sshd-config",
     "tasks/harden-dockerfile",
-    "tasks/fix-sqli-flask"
+    "tasks/fix-sqli-flask",
+    "tasks/analyze-apache-access-log",
+    "tasks/remediate-jwt-auth-bypass"
 ]
